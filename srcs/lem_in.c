@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:35:54 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/09 01:29:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/13 03:57:28 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,19 @@ t_room	*crea_room(void)
 
 	if (!(room = (t_room *)ft_memalloc(sizeof(t_room))))
 		ft_error("ERROR");
+	room->next = NULL;
 	return (room);
 }
 
 int		main(void)
 {
 	t_env	e;
-	char	*buff;
 
 	e.ants = 0;
+	e.args = 0;
+	e.room = NULL;
 	while (get_next_line(0, &e.str))
-	{
 		if (parsing(&e) == 0)
-			break ;
-	}
-	if ((buff = ft_treat(e)) > 0)
-		ft_write(buff);
-	else
-		write(7, "ERROR\n", 2);
+			ft_error("ERROR");
 	return (0);
 }

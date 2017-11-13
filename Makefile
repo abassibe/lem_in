@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/11/09 01:40:04 by abassibe         ###   ########.fr        #
+#    Updated: 2017/11/13 03:35:04 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = lem-in
 
 SRCS =	lem_in.c \
 		parsing.c \
-		scout.c
+		kind_of_line.c
 
 OBJS = $(SRCS:.c=.o)
 

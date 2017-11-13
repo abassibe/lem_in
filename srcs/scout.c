@@ -6,22 +6,8 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 01:38:28 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/09 05:51:41 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/13 01:19:12 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-char	which_kind_of_line(t_env *e)
-{
-	int		i;
-
-	i = -1;
-	while (e->str[++i])
-	{
-		if (str[0] == '#')
-
-		else if (str[0] >= '0' && str[0] <= '9')
-		if (str[i] < '0' || str[i] > '9')
-	}
-}
