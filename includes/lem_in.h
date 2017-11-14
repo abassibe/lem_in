@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:36:44 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/13 04:50:01 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/14 04:45:06 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,15 @@ typedef struct		s_env
 	t_room			*room;
 }					t_env;
 
-int				parsing(t_env *e);
+char			parsing(t_env *e);
 t_room			*crea_room();
 t_pipe			*crea_pipe();
+char			check_value(const char *str);
 char			which_kind_of_line(t_env *e);
-void			ft_error(char *str);
+void			add_room(t_env *e);
+char			already_exist(const char *str, t_room *room);
+char			room_exist(t_room *room, const char *str);
+void			add_pipe(t_env *e);
+void			ft_error(char *str, char flag);
 
 #endif

@@ -6,105 +6,71 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 05:19:51 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/13 05:23:39 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/14 06:02:36 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	add_other_room(t_env *e, t_room *room)
+/*
+char	already_save(t_pipe *pipe, char *str)
 {
-	char	**tab;
+	if (!pipe)
+		return (0);
+	while (pipe->next)
+	{
+		if (!ft_strcmp(str, ))
+	}
+}
 
+void	add_first(t_room *room, t_pipe *pipe, char str)
+{
+	if (already_save(pipe, str))
+		return ;
 	while (room->next)
-		room = room->next;
-	room->next = crea_room();
-	room = room->next;
-	tab = ft_strsplit(e->str, ' ');
-	room->name = ft_strdup(tab[0]);
-	room->x = ft_atoi(tab[1]);
-	room->y = ft_atoi(tab[2]);
-	if (e->start == 1)
 	{
-		room->features = 's';
-		e->start = 2;
+		if (!ft_strcmp(room->name, str))
+		{
+			if (!room->pipe)
+				room->pipe = crea_pipe();
+			else
+
+		}
 	}
-	else if (e->end == 1)
-	{
-		room->features = 'e';
-		e->end = 2;
-	}
-	else
-		room->features = 'n';
 }
 
-void	add_first_room(t_env *e)
+void	add_pipe(t_env *e)
 {
-	char	**tab;
+	char	**tmp;
 
-	e->room = crea_room();
-	tab = ft_strsplit(e->str, ' ');
-	e->room->name = ft_strdup(tab[0]);
-	e->room->x = ft_atoi(tab[1]);
-	e->room->y = ft_atoi(tab[2]);
-	if (e->start == 1)
-	{
-		e->room->features = 's';
-		e->start = 2;
-	}
-	else if (e->end == 1)
-	{
-		e->room->features = 'e';
-		e->end = 2;
-	}
-	else
-		e->room->features = 'n';
+	tmp = ft_strsplit(e->str, '-');
+	add_first(e->room, e->room->pipe, tmp[0]);
 }
-
-void	add_room(t_env *e)
-{
-	t_room *tmp;
-
-	if (!e->room)
-		add_first_room(e);
-	else
-		add_other_room(e, e->room);
-	tmp = e->room;
-	printf("-------debut liste salle---------\n");
-	while (e->room)
-	{
-		if (e->room->features == 's')
-			printf("NAME = %s, X = %d, Y = %d | >>>>>START<<<<<\n", e->room->name, e->room->x, e->room->y);
-		if (e->room->features == 'e')
-			printf("NAME = %s, X = %d, Y = %d | >>>>>END<<<<<\n", e->room->name, e->room->x, e->room->y);
-		else
-		printf("NAME = %s, X = %d, Y = %d\n", e->room->name, e->room->x, e->room->y);
-		e->room = e->room->next;
-	}
-	printf("-------fin liste salle---------\n");
-	e->room = tmp;
-}
-
-int		parsing(t_env *e)
+*/
+char		parsing(t_env *e)
 {
 	char	c;
 
 	c = which_kind_of_line(e);
-	if (c == 'c')
+	if (c == 'c' && e->args == 2)
 	{
-//		if (add_pipes(e) > 0)
-			return (1);
+//		add_pipe(e);
+		ft_printf("Pipe {green}OK{eoc} = %s\n", e->str);
 	}
-	else if (c == 'b')
+	else if (c == 'b' && e->args == 1)
 	{
 		add_room(e);
+		ft_printf("Room {green}OK{eoc} = %s\n", e->str);
 	}
 	else if (c == 'a' && e->args == 0)
 	{
 		e->ants = ft_atoi(e->str);
 		e->args = 1;
+		ft_printf("Ants {green}OK{eoc} = %d\n", e->ants);
 	}
 	else if (c == 'e')
+	{
+		ft_printf("Couille dans l'potage {red}KO{eoc} = %s\n", e->str);
 		return (0);
+	}
 	return (1);
 }
