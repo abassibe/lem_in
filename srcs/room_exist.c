@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 05:33:17 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/14 05:34:23 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/15 04:57:13 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char			already_exist(const char *str, t_room *room)
 			return (1);
 	}
 	tmp[i] = '\0';
-	while (room->next)
+	while (room)
 	{
 		if (!ft_strcmp(tmp, room->name))
 			return (1);
@@ -42,7 +42,7 @@ static char		room_exist_2(t_room *room, char **tmp)
 	int		i;
 
 	i = 0;
-	while (room->next)
+	while (room)
 	{
 		if (!ft_strcmp(tmp[0], room->name))
 			i++;

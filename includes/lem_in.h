@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:36:44 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/14 04:45:06 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/15 02:22:22 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char			which_kind_of_line(t_env *e);
 void			add_room(t_env *e);
 char			already_exist(const char *str, t_room *room);
 char			room_exist(t_room *room, const char *str);
-void			add_pipe(t_env *e);
+void			add_pipe(t_room *room, char *str);
 void			ft_error(char *str, char flag);
 
 #endif

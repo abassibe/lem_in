@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 03:33:26 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/14 04:46:10 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/15 03:24:15 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ static char		is_pipe(t_room *room, const char *str)
 
 	i = 0;
 	count = 0;
-	while ((str[i] >= '0' && str[i] <= '9') && str[i])
+	while ((str[i] != '-' && str[i] != ' ') && str[i])
 		i++;
 	if (str[i] == '-')
 		i++;
 	else if (i == 0 || str[i] != '-')
 		return (0);
-	while ((str[i] >= '0' && str[i] <= '9') && str[i])
+	while ((str[i] != '-' && str[i] != ' ') && str[i])
 		i++;
 	if (str[i])
 		return (0);
