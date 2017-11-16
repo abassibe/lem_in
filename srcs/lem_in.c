@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:35:54 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/15 03:30:05 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/16 05:48:37 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_pipe	*crea_pipe(void)
 
 	if (!(pipe = (t_pipe *)ft_memalloc(sizeof(t_pipe))))
 		ft_error("ERROR", 1);
-	pipe->next = NULL;
-	pipe->id = 0;
 	return (pipe);
 }
 
@@ -41,13 +39,12 @@ t_room	*crea_room(void)
 
 	if (!(room = (t_room *)ft_memalloc(sizeof(t_room))))
 		ft_error("ERROR", 1);
-	room->next = NULL;
 	return (room);
 }
 
 void	all_print(t_env *e)
 {
-		ft_printf("ANTS = {green}%d\n", e->ants);
+	ft_printf("ANTS = {green}%d\n", e->ants);
 	while (e->room)
 	{
 		ft_printf("----- Room name = {green}%s{eoc} -----\n", e->room->name);
@@ -64,7 +61,7 @@ void	all_print(t_env *e)
 		while (e->room->pipe)
 		{
 			if (e->room->pipe->next)
-				ft_printf("{green}%d, ", e->room->pipe->id);
+				ft_printf("{green}%d{eoc}, ", e->room->pipe->id);
 			else
 				ft_printf("{green}%d{eoc} |\n", e->room->pipe->id);
 			e->room->pipe = e->room->pipe->next;
@@ -77,13 +74,25 @@ void	all_print(t_env *e)
 int		main(void)
 {
 	t_env	e;
+	int		i;
 
 	e.ants = 0;
 	e.args = 0;
 	e.room = NULL;
+	e.nb_room = 0;
+	i = -1;
 	while (get_next_line(0, &e.str))
+	{
 		if (parsing(&e) == 0)
 			ft_error("ERROR", 0);
+		fill_buff(&e);
+	}
+	enough_data(&e);
+	while (e.buff[++i])
+	{
+		write(1, e.buff[i], ft_strlen(e.buff[i]));
+		write(1, "\n", 1);
+	}
 	all_print(&e);
 	return (0);
 }

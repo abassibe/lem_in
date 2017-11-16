@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 03:33:26 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/15 03:24:15 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/16 01:02:31 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,11 @@ char	which_kind_of_line(t_env *e)
 	if (e->str[0] == '#' && e->str[1] != '#')
 		return ('d');
 	if (is_particular_case(&e->start, &e->end, e->str))
+	{
+		if (e->start == 1 && e->end == 1)
+			return ('e');
 		return ('d');
+	}
 	else if (is_pipe(e->room, e->str))
 	{
 		e->args = 2;

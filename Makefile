@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/11/15 02:37:45 by abassibe         ###   ########.fr        #
+#    Updated: 2017/11/16 05:25:07 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ SRCS =	lem_in.c \
 		add_room.c \
 		utils.c \
 		room_exist.c \
-		add_pipe.c
+		add_pipe.c \
+		enough_data.c \
+		fill_buff.c
 
 OBJS = $(SRCS:.c=.o)
 

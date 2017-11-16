@@ -6,15 +6,15 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 02:37:27 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/15 04:51:17 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/16 04:30:23 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-char	already_save(t_room *room, int id, char *str)
+static char		already_save(t_room *room, const int id, const char *str)
 {
-	while (room->next)
+	while (room)
 	{
 		if (!ft_strcmp(room->name, str))
 			if (id == room->id)
@@ -24,7 +24,7 @@ char	already_save(t_room *room, int id, char *str)
 	return (0);
 }
 
-int		add_first(t_room *room, t_room *tmp_room, char *str)
+static int		add_first(t_room *room, t_room *tmp_room, const char *str)
 {
 	room->pipe = crea_pipe();
 	while (tmp_room && ft_strcmp(str, tmp_room->name))
@@ -33,7 +33,7 @@ int		add_first(t_room *room, t_room *tmp_room, char *str)
 	return (room->pipe->id);
 }
 
-int		add_other_pipe(t_pipe *pipe, t_room *room, char *str)
+static int		add_other_pipe(t_pipe *pipe, t_room *room, const char *str)
 {
 	while (pipe->next)
 	{
@@ -43,13 +43,29 @@ int		add_other_pipe(t_pipe *pipe, t_room *room, char *str)
 	}
 	pipe->next = crea_pipe();
 	pipe = pipe->next;
-	while (ft_strcmp(str, room->name))
+	while (room && ft_strcmp(str, room->name))
 		room = room->next;
 	pipe->id = room->id;
 	return (pipe->id);
 }
 
-void	add_pipe(t_room *room, char *str)
+static void		add_connex(t_room *tmp_room, t_pipe *pipe, const t_room *room)
+{
+	if (!tmp_room->pipe)
+	{
+		tmp_room->pipe = crea_pipe();
+		tmp_room->pipe->id = room->id;
+	}
+	else
+	{
+		while (pipe->next)
+			pipe = pipe->next;
+		pipe->next = crea_pipe();
+		pipe->next->id = room->id;
+	}
+}
+
+void			add_pipe(t_room *room, const char *str)
 {
 	char	**tmp;
 	int		id;
@@ -64,12 +80,10 @@ void	add_pipe(t_room *room, char *str)
 	if (!room->pipe)
 		id = add_first(room, tmp_room, tmp[1]);
 	else
-		id = add_other_pipe(room->pipe, room, tmp[1]);
+		id = add_other_pipe(room->pipe, tmp_room, tmp[1]);
 	if (id == 0)
 		return ;
 	while (tmp_room && tmp_room->id != id)
 		tmp_room = tmp_room->next;
-	if (!tmp_room->pipe)
-		tmp_room->pipe = crea_pipe();
-	tmp_room->pipe->id = room->id;
+	add_connex(tmp_room, tmp_room->pipe, room);
 }

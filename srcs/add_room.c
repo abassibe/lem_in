@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 01:24:20 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/14 03:15:55 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/16 05:34:11 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,9 @@ static void		add_first_room(t_env *e)
 
 void			add_room(t_env *e)
 {
-//	t_room *tmp;
-
+	e->nb_room++;
 	if (!e->room)
 		add_first_room(e);
 	else
 		add_other_room(e, e->room);
-/*	tmp = e->room;
-	printf("-------debut liste salle---------\n");
-	while (e->room)
-	{
-		if (e->room->features == 's')
-			printf("NAME = %s, X = %d, Y = %d, ID = %d | >>>>>START<<<<<\n", e->room->name, e->room->x, e->room->y, e->room->id);
-		else if (e->room->features == 'e')
-			printf("NAME = %s, X = %d, Y = %d, ID = %d | >>>>>END<<<<<\n", e->room->name, e->room->x, e->room->y, e->room->id);
-		else
-		printf("NAME = %s, X = %d, Y = %d, ID = %d\n", e->room->name, e->room->x, e->room->y, e->room->id);
-		e->room = e->room->next;
-	}
-	printf("-------fin liste salle---------\n");
-	e->room = tmp;*/
 }
