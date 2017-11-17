@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 03:33:26 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/16 01:02:31 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/17 07:18:08 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static char		is_ants(const char *str)
 		return (0);
 	i = ft_atoi_long(str);
 	if (i < -2147483648 || i > 2147483647)
+		return (0);
+	if (i == 0)
 		return (0);
 	return (1);
 }
@@ -102,7 +104,9 @@ char	which_kind_of_line(t_env *e)
 	if (e->str[0] == 'L' || e->str[0] == '-' || e->str[0] == ' ')
 		return ('e');
 	if (e->str[0] == '#' && e->str[1] != '#')
+	{
 		return ('d');
+	}
 	if (is_particular_case(&e->start, &e->end, e->str))
 	{
 		if (e->start == 1 && e->end == 1)

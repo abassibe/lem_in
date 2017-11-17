@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:35:54 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/16 05:48:37 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/17 07:15:00 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,36 @@ void	all_print(t_env *e)
 	}
 }
 
+void	get_pipe_id(t_pipe *pipe, char *str, int nb_room)
+{
+	int		i;
+
+	i = -1;
+	while (++i < nb_room)
+		str[i] = '0';
+	while (pipe)
+	{
+		str[pipe->id] = '1';
+		pipe = pipe->next;
+	}
+}
+
+void	fill_matrix(t_env *e, t_room *room)
+{
+	int		i;
+
+	i = -1;
+	if (!(e->matrix = (char **)ft_memalloc(sizeof(char *) * e->nb_room)))
+		ft_error("ERROR", 1);
+	while (++i < e->nb_room)
+		e->matrix[i] = ft_strnew(e->nb_room + 1);
+	while (room)
+	{
+		get_pipe_id(room->pipe, e->matrix[room->id], e->nb_room);
+		room = room->next;
+	}
+}
+
 int		main(void)
 {
 	t_env	e;
@@ -81,12 +111,14 @@ int		main(void)
 	e.room = NULL;
 	e.nb_room = 0;
 	i = -1;
+	e.ind = 0;
 	while (get_next_line(0, &e.str))
 	{
 		if (parsing(&e) == 0)
-			ft_error("ERROR", 0);
+			break ;
 		fill_buff(&e);
 	}
+	fill_matrix(&e, e.room);
 	enough_data(&e);
 	while (e.buff[++i])
 	{

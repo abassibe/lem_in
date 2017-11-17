@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 01:24:20 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/16 05:34:11 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/17 07:01:16 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		add_first_room(t_env *e)
 	e->room->name = ft_strdup(tab[0]);
 	e->room->x = ft_atoi(tab[1]);
 	e->room->y = ft_atoi(tab[2]);
-	e->room->id = 1;
+	e->room->id = 0;
 	if (e->start == 1)
 	{
 		e->room->features = 's';

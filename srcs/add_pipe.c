@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 02:37:27 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/16 04:30:23 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/17 05:25:54 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		add_other_pipe(t_pipe *pipe, t_room *room, const char *str)
 	while (pipe->next)
 	{
 		if (already_save(room, pipe->id, str))
-			return (0);
+			return (-1);
 		pipe = pipe->next;
 	}
 	pipe->next = crea_pipe();
@@ -81,7 +81,7 @@ void			add_pipe(t_room *room, const char *str)
 		id = add_first(room, tmp_room, tmp[1]);
 	else
 		id = add_other_pipe(room->pipe, tmp_room, tmp[1]);
-	if (id == 0)
+	if (id == -1)
 		return ;
 	while (tmp_room && tmp_room->id != id)
 		tmp_room = tmp_room->next;

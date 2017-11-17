@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:36:44 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/16 05:33:47 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/17 07:24:17 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,24 @@ typedef struct		s_env
 	char			args;
 	char			start;
 	char			end;
+	int				ind;
+	char			**matrix;
 	int				nb_room;
 	t_room			*room;
 }					t_env;
 
-char			parsing(t_env *e);
-t_room			*crea_room();
-t_pipe			*crea_pipe();
-char			check_value(const char *str);
-char			which_kind_of_line(t_env *e);
-void			add_room(t_env *e);
-char			already_exist(const char *str, t_room *room);
-char			room_exist(t_room *room, const char *str);
-void			add_pipe(t_room *room, const char *str);
-void			enough_data(t_env *e);
-void			fill_buff(t_env *e);
-void			ft_error(char *str, char flag);
-void			all_print(t_env *e);
+char				parsing(t_env *e);
+t_room				*crea_room();
+t_pipe				*crea_pipe();
+char				check_value(const char *str);
+char				which_kind_of_line(t_env *e);
+void				add_room(t_env *e);
+char				already_exist(const char *str, t_room *room);
+char				room_exist(t_room *room, const char *str);
+void				add_pipe(t_room *room, const char *str);
+void				enough_data(t_env *e);
+void				fill_buff(t_env *e);
+void				ft_error(char *str, char flag);
+void				all_print(t_env *e);
 
 #endif
