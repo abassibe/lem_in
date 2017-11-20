@@ -21,3 +21,12 @@ char			check_value(const char *str)
 		return (0);
 	return (1);
 }
+
+void	init_struct(t_env *e)
+{
+	e->ants = 0;
+	e->args = 0;
+	e->room = NULL;
+	e->nb_room = 0;
+	e->ind = 0;
+}

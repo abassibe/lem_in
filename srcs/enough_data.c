@@ -47,13 +47,14 @@ char		looking_for_path(t_env *e, char *str, int id, int id_end, int *path)
 		path[e->ind] = id;
 		return (1);
 	}
-	while (i != e->ind)
+	while (i < e->ind)
 		i++;
 	path[i] = id;
 	e->ind++;
 	i = -1;
 	while (++i < e->nb_room)
-		if (str[i] == '1' && !verif_already_check(e->ind, i, path) && looking_for_path(e, e->matrix[i], i, id_end, &*path))
+		if (str[i] == '1' && !verif_already_check(e->ind, i, path) &&
+		looking_for_path(e, e->matrix[i], i, id_end, &*path))
 			return (1);
 	i = 0;
 	while (i != e->ind)
@@ -68,10 +69,13 @@ static void		existing_path(t_env *e, t_room *room)
 	int		id_start;
 	int		id_end;
 	int		*path;
-	int i = 0;
+	int i = -1;
 
 	if (!(path = (int *)ft_memalloc(sizeof(int) * e->nb_room)))
 		ft_error("ERROR", 0);
+	while (++i < e->nb_room)
+		path[i] = -1;
+	i = 0;
 	while (room->features != 's')
 		room = room->next;
 	id_start = room->id;
@@ -82,11 +86,8 @@ static void		existing_path(t_env *e, t_room *room)
 	if (!looking_for_path(e, e->matrix[id_start], id_start, id_end, &*path))
 		ft_error("ERROR", 0);
 	printf("Y'A UN PUTAIN DE PATH !!!!\n");
-	while (i != e->nb_room)
-	{
+	while (++i != e->nb_room)
 		printf("%d, ", path[i]);
-		i++;
-	}
 	printf("\n");
 }
 

@@ -58,6 +58,7 @@ void				add_pipe(t_room *room, const char *str);
 void				enough_data(t_env *e);
 void				fill_buff(t_env *e);
 void				ft_error(char *str, char flag);
+void				init_struct(t_env *e);
 void				all_print(t_env *e);
 
 #endif

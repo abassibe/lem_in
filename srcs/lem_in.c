@@ -106,12 +106,8 @@ int		main(void)
 	t_env	e;
 	int		i;
 
-	e.ants = 0;
-	e.args = 0;
-	e.room = NULL;
-	e.nb_room = 0;
 	i = -1;
-	e.ind = 0;
+	init_struct(&e);
 	while (get_next_line(0, &e.str))
 	{
 		if (parsing(&e) == 0)
@@ -125,6 +121,7 @@ int		main(void)
 		write(1, e.buff[i], ft_strlen(e.buff[i]));
 		write(1, "\n", 1);
 	}
+	write(1, "\n", 1);
 	all_print(&e);
 	return (0);
 }
