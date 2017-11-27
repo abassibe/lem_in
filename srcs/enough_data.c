@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 01:04:32 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/17 07:03:22 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/27 03:29:52 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,29 @@ char		verif_already_check(int ind, int i, int *path)
 	return (0);
 }
 
-char		looking_for_path(t_env *e, char *str, int id, int id_end, int *path)
+char		looking_for_path(t_env *e, char *str, int id, int id_end)
 {
 	int		i;
 
 	i = 0;
 	if (str[id_end] == '1')
 	{
-		path[e->ind] = id;
+		e->path[e->ind] = id;
 		return (1);
 	}
 	while (i < e->ind)
 		i++;
-	path[i] = id;
+	e->path[i] = id;
 	e->ind++;
 	i = -1;
 	while (++i < e->nb_room)
-		if (str[i] == '1' && !verif_already_check(e->ind, i, path) &&
-		looking_for_path(e, e->matrix[i], i, id_end, &*path))
+		if (str[i] == '1' && !verif_already_check(e->ind, i, e->path) &&
+		looking_for_path(e, e->matrix[i], i, id_end))
 			return (1);
 	i = 0;
 	while (i != e->ind)
 		i++;
-	path[i] = -1;
+	e->path[i] = -1;
 	e->ind--;
 	return (0);
 }
@@ -68,26 +68,28 @@ static void		existing_path(t_env *e, t_room *room)
 {
 	int		id_start;
 	int		id_end;
-	int		*path;
-	int i = -1;
+	int		i;
 
-	if (!(path = (int *)ft_memalloc(sizeof(int) * e->nb_room)))
+	i = -1;
+	if (!(e->path = (int *)ft_memalloc(sizeof(int) * e->nb_room)))
 		ft_error("ERROR", 0);
 	while (++i < e->nb_room)
-		path[i] = -1;
+		e->path[i] = -1;
 	i = 0;
 	while (room->features != 's')
 		room = room->next;
 	id_start = room->id;
+	e->start_id = id_start;
 	e->room = room;
 	while (room->features != 'e')
 		room = room->next;
 	id_end = room->id;
-	if (!looking_for_path(e, e->matrix[id_start], id_start, id_end, &*path))
+	e->end_id = id_end;
+	if (!looking_for_path(e, e->matrix[id_start], id_start, id_end))
 		ft_error("ERROR", 0);
 	printf("Y'A UN PUTAIN DE PATH !!!!\n");
 	while (++i != e->nb_room)
-		printf("%d, ", path[i]);
+		printf("%d, ", e->path[i]);
 	printf("\n");
 }
 

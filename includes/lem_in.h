@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:36:44 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/17 07:24:17 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/27 05:15:44 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ typedef struct		s_env
 	int				ind;
 	char			**matrix;
 	int				nb_room;
+	int				*path;
+	int				max_path;
+	int				start_id;
+	int				end_id;
+	int				*bl;
 	t_room			*room;
 }					t_env;
 
@@ -60,5 +65,6 @@ void				fill_buff(t_env *e);
 void				ft_error(char *str, char flag);
 void				init_struct(t_env *e);
 void				all_print(t_env *e);
+void				algo(t_env *e);
 
 #endif

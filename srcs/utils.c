@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 01:29:08 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/14 05:35:06 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/27 03:29:45 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,17 @@ char			check_value(const char *str)
 void	init_struct(t_env *e)
 {
 	e->ants = 0;
+	e->buff = NULL;
+	e->str = NULL;
 	e->args = 0;
-	e->room = NULL;
-	e->nb_room = 0;
+	e->start = 0;
+	e->end = 0;
 	e->ind = 0;
+	e->matrix = NULL;
+	e->nb_room = 0;
+	e->path = NULL;
+	e->max_path = 0;
+	e->start_id = 0;
+	e->end_id = 0;
+	e->room = NULL;
 }
