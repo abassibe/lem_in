@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 01:29:08 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/27 03:29:45 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/28 04:05:08 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_struct(t_env *e)
 	e->nb_room = 0;
 	e->path = NULL;
 	e->max_path = 0;
+	e->nb_paths = 0;
 	e->start_id = 0;
 	e->end_id = 0;
 	e->room = NULL;

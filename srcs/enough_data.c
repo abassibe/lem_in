@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 01:04:32 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/27 03:29:52 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/28 05:57:32 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,6 @@ static void		existing_path(t_env *e, t_room *room)
 	e->end_id = id_end;
 	if (!looking_for_path(e, e->matrix[id_start], id_start, id_end))
 		ft_error("ERROR", 0);
-	printf("Y'A UN PUTAIN DE PATH !!!!\n");
-	while (++i != e->nb_room)
-		printf("%d, ", e->path[i]);
-	printf("\n");
 }
 
 void			enough_data(t_env *e)
