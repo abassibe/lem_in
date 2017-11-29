@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 03:05:48 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/28 05:58:37 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/29 04:45:43 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int		**set_paths(int max_path, int nb_room)
 int		**get_path(t_env *e)
 {
 	int		i;
-//	int		j = 0;
+	int		j = 0;
 	int		**paths;
 
 	i = -1;
@@ -130,14 +130,14 @@ int		**get_path(t_env *e)
 			break ;
 		fill_bl(e);
 		e->nb_paths++;
-/*		printf("path =");
+		printf("path =");
 		while (paths[i][j] != -1)
 		{
 			printf(" %d", paths[i][j]);
 			j++;
 		}
 		j = 0;
-		printf("\n");*/
+		printf("\n");
 		e->ind = 0;
 	}
 	return (paths);
@@ -168,16 +168,37 @@ int		get_index(int *path)
 	i = 0;
 	while (path[i] != -1)
 		i++;
-	return (i);
+	return (i - 1);
 }
 
-void	send_ants(t_env *e, int **paths)
+void	send_ants2(t_env *e, int **paths, int i, int j, int *end)
+{
+	if (e->matrix[0][paths[i][j]])
+	{
+		e->matrix[0][paths[i][j]] = 0;
+		if (paths[i][j + 1] == -1)
+		{
+			print_move(e, paths[i][j], e->end_id);
+			(*end)++;
+		}
+		else
+		{
+			print_move(e, paths[i][j], paths[i][j + 1]);
+			e->matrix[0][paths[i][j + 1]] = 1;
+		}
+	}
+}
+
+void	send_ants(t_env *e, int **paths, int ant_max)
 {
 	int		i;
 	int		j;
+	int		end;
 
 	i = -1;
-	while (e->ants > 0)
+	end = 0;
+	j = 0;
+	while (end < ant_max)
 	{
 		if (e->nb_paths > 1 && (e->ants - 1) - limit_ants(paths, e->nb_paths) < 1)
 			e->nb_paths--;
@@ -186,26 +207,26 @@ void	send_ants(t_env *e, int **paths)
 			j = get_index(paths[i]);
 			while (j >= 0)
 			{
-				if (e->matrix[0][paths[i][j]])
-				{
-					e->matrix[0][paths[i][j]] = 0;
-					if (paths[i][j + 1] == -1)
-					{
-						printf("L%d-%d ", paths[i][j], e->end_id);
-					}
-					else
-					{
-						printf("L%d-%d ", paths[i][j], paths[i][j + 1]);
-						e->matrix[0][paths[i][j + 1]] = 1;
-					}
-				}
+				send_ants2(e, paths, i, j, &end);
 				j--;
 			}
-			j = 0;
-			e->matrix[0][paths[i][j + 1]] = 1;
-			printf("L%d-%d ", paths[i][j], paths[i][j + 1]);
+			if (e->ants > 0)
+			{
+				e->matrix[0][paths[i][1]] = 1;
+				print_move(e, paths[i][0], paths[i][1]);
+			}
 		}
-		printf("\n");
+		while (i < e->max_path)
+		{
+			j = get_index(paths[i]);
+			while (j >= 0)
+			{
+				send_ants2(e, paths, i, j, &end);
+				j--;
+			}
+			i++;
+		}
+		write(1, "\n", 1);
 		e->ants -= e->nb_paths;
 		i = -1;
 	}
@@ -226,14 +247,26 @@ void	reset_matrix(t_env *e)
 	}
 }
 
+void	all_in_one(t_env *e)
+{
+	int		i;
+
+	i = -1;
+	while (++i < e->ants)
+		print_move(e, e->start_id, e->end_id);
+	write(1, "\n", 1);
+}
+
 void	algo(t_env *e)
 {
 	int		i;
 	int		**paths;
+	int		ant_max;
 
 	i = -1;
+	ant_max = e->ants;
 	free(e->path);
-	if (!(e->bl = (int *)ft_memalloc((sizeof(int) * e->nb_room))))
+	if (!(e->bl = (int *)ft_memalloc((sizeof(int) * e->nb_room) + 1)))
 		ft_error("ERROR", 1);
 	while (++i < e->nb_room)
 		e->bl[i] = -1;
@@ -241,5 +274,8 @@ void	algo(t_env *e)
 	e->ind = 0;
 	paths = get_path(e);
 	reset_matrix(e);
-	send_ants(e, paths);
+	if (paths[0][1] == -1)
+		all_in_one(e);
+	else
+		send_ants(e, paths, ant_max);
 }

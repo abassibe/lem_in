@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:36:44 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/28 04:04:48 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/29 04:40:30 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void				ft_error(char *str, char flag);
 void				init_struct(t_env *e);
 void				all_print(t_env *e);
 void				algo(t_env *e);
+void				print_move(t_env *e, int from, int to);
 
 #endif
