@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 18:11:09 by abassibe          #+#    #+#             */
-/*   Updated: 2017/05/05 05:53:56 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/30 02:23:25 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static int	c_word(char const *s, char c)
 
 	p = 0;
 	k = 0;
-	while (s[p] != '\0')
+	while (s[p])
 	{
 		while (s[p] == c)
 			p++;
-		while (s[p] != c && s[p])
+		while (s[p] && s[p] != c)
 		{
 			p++;
-			if (s[p] == c || s[p] == '\0')
+			if (s[p] == c || !s[p])
 				k++;
 		}
 	}
@@ -40,24 +40,23 @@ char		**ft_strsplit(char const *s, char c)
 	int		p;
 	int		f;
 
-	tb = NULL;
 	k = 0;
 	p = 0;
 	f = 0;
-	if (s == NULL || !(tb = (char **)malloc(sizeof(char *) * c_word(s, c) + 1)))
+	if (s == NULL ||
+			!(tb = (char **)ft_memalloc(sizeof(char *) * c_word(s, c) + 1)))
 		return (NULL);
-	while (p < c_word(s, c) && s[k])
+	while (s[k] && p < c_word(s, c))
 	{
-		while (s[k] == c && s[k])
+		while (s[k] && s[k] == c)
 			k++;
 		f = k;
-		while (s[f] != c && s[f])
+		while (s[f] && s[f] != c)
 			f++;
 		if (p <= c_word(s, c))
 			tb[p] = ft_strsub(s, k, f - k);
 		k = f;
 		p++;
 	}
-	tb[p] = 0;
 	return (tb);
 }

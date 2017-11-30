@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 05:23:53 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/27 01:02:25 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/30 04:44:24 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void			fill_buff(t_env *e)
 		if (!(e->buff = (char **)ft_memalloc(sizeof(char *) * 2)))
 			ft_error("ERROR", 1);
 		e->buff[0] = ft_strdup(e->str);
-//		e->buff[1] = NULL;
 	}
 	else
 	{
@@ -47,7 +46,6 @@ void			fill_buff(t_env *e)
 		while (tmp[++i])
 			e->buff[i] = ft_strdup(tmp[i]);
 		e->buff[i] = ft_strdup(e->str);
-//		e->buff[i + 1] = NULL;
 		free_buff(tmp);
 	}
 }

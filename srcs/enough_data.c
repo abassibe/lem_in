@@ -6,13 +6,13 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 01:04:32 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/28 05:57:32 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/30 01:01:40 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void			enough_room(t_room *room)
+static void		enough_room(t_room *room)
 {
 	int		i;
 
@@ -26,7 +26,7 @@ static void			enough_room(t_room *room)
 		ft_error("ERROR", 0);
 }
 
-char		verif_already_check(int ind, int i, int *path)
+static char		verif_already_check(int ind, const int i, const int *path)
 {
 	int		j;
 
@@ -37,7 +37,8 @@ char		verif_already_check(int ind, int i, int *path)
 	return (0);
 }
 
-char		looking_for_path(t_env *e, char *str, int id, int id_end)
+static char		looking_for_path(t_env *e, char *str,
+		const int id, const int id_end)
 {
 	int		i;
 

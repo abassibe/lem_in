@@ -6,23 +6,11 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:35:54 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/28 05:57:09 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/30 06:00:21 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	ft_error(char *str, char flag)
-{
-	if (flag == 1)
-		perror(str);
-	else
-	{
-		write (2, str, ft_strlen(str));
-		write (2, "\n", 1);
-	}
-	exit(0);
-}
 
 t_pipe	*crea_pipe(void)
 {
@@ -40,35 +28,6 @@ t_room	*crea_room(void)
 	if (!(room = (t_room *)ft_memalloc(sizeof(t_room))))
 		ft_error("ERROR", 1);
 	return (room);
-}
-
-void	all_print(t_env *e)
-{
-	ft_printf("ANTS = {green}%d\n", e->ants);
-	while (e->room)
-	{
-		ft_printf("----- Room name = {green}%s{eoc} -----\n", e->room->name);
-		ft_printf("| Room ID           = {green}%d{eoc} |\n", e->room->id);
-		ft_printf("| Room X            = {green}%d{eoc} |\n", e->room->x);
-		ft_printf("| Room Y            = {green}%d{eoc} |\n", e->room->y);
-		if (e->room->features == 's')
-		ft_printf("| Room features     = {red}START{eoc} |\n");
-		else if (e->room->features == 'e')
-		ft_printf("| Room features     = {red}END{eoc} |\n");
-		else
-		ft_printf("| Room features     = {green}NONE{eoc} |\n");
-		ft_printf("| Room ID connected = ");
-		while (e->room->pipe)
-		{
-			if (e->room->pipe->next)
-				ft_printf("{green}%d{eoc}, ", e->room->pipe->id);
-			else
-				ft_printf("{green}%d{eoc} |\n", e->room->pipe->id);
-			e->room->pipe = e->room->pipe->next;
-		}
-		printf("\n----------------------------\n");
-		e->room = e->room->next;
-	}
 }
 
 void	get_pipe_id(t_pipe *pipe, char *str, int nb_room)
@@ -113,6 +72,7 @@ int		main(void)
 		if (parsing(&e) == 0)
 			break ;
 		fill_buff(&e);
+		free(e.str);
 	}
 	fill_matrix(&e, e.room);
 	enough_data(&e);
@@ -122,7 +82,8 @@ int		main(void)
 		write(1, "\n", 1);
 	}
 	write(1, "\n", 1);
-//	all_print(&e);
 	algo(&e);
+	while (1)
+		;
 	return (0);
 }

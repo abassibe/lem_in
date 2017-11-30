@@ -6,13 +6,25 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 01:29:08 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/28 04:05:08 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/30 01:05:19 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-char			check_value(const char *str)
+void	ft_error(char *str, char flag)
+{
+	if (flag == 1)
+		perror(str);
+	else
+	{
+		write(2, str, ft_strlen(str));
+		write(2, "\n", 1);
+	}
+	exit(0);
+}
+
+char	check_value(const char *str)
 {
 	long int	nb;
 

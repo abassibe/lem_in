@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 03:33:26 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/27 03:21:25 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/30 01:03:45 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ static char		is_particular_case(char *start, char *end, const char *str)
 {
 	if (str[0] == '#' && str[1] == '#')
 	{
-		if (*start == 0  && str[2] == 's' && str[3] == 't' && str[4] == 'a' && str[5] == 'r' && str[6] == 't')
+		if (*start == 0 && str[2] == 's' && str[3] == 't' &&
+				str[4] == 'a' && str[5] == 'r' && str[6] == 't')
 		{
 			*start = 1;
 			return (1);
@@ -99,7 +100,7 @@ static char		is_particular_case(char *start, char *end, const char *str)
 	return (0);
 }
 
-char	which_kind_of_line(t_env *e)
+char			which_kind_of_line(t_env *e)
 {
 	if (e->str[0] == 'L' || e->str[0] == '-' || e->str[0] == ' ')
 		return ('e');

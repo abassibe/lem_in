@@ -6,11 +6,21 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 01:24:20 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/17 07:01:16 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/30 05:18:54 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void			free_tab(char **tab)
+{
+	int		i;
+
+	i = -1;
+	while (++i < 3)
+		free(tab[i]);
+	free(tab);
+}
 
 static void		add_other_room(t_env *e, t_room *room)
 {
@@ -37,6 +47,7 @@ static void		add_other_room(t_env *e, t_room *room)
 	}
 	else
 		room->features = 'n';
+	free_tab(tab);
 }
 
 static void		add_first_room(t_env *e)
@@ -61,6 +72,7 @@ static void		add_first_room(t_env *e)
 	}
 	else
 		e->room->features = 'n';
+	free_tab(tab);
 }
 
 void			add_room(t_env *e)

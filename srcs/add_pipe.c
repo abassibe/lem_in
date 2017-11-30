@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 02:37:27 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/17 05:25:54 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/30 04:36:02 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,7 @@ void			add_pipe(t_room *room, const char *str)
 	while (tmp_room && tmp_room->id != id)
 		tmp_room = tmp_room->next;
 	add_connex(tmp_room, tmp_room->pipe, room);
+	free(tmp[0]);
+	free(tmp[1]);
+	free(tmp);
 }

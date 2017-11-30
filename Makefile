@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/11/29 00:11:06 by abassibe         ###   ########.fr        #
+#    Updated: 2017/11/30 00:50:18 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRCS =	lem_in.c \
 		enough_data.c \
 		fill_buff.c \
 		algo.c \
-		print_move.c
+		print_move.c \
+		get_path.c \
+		send_ants.c
 
 OBJS = $(SRCS:.c=.o)
 
