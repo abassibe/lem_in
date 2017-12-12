@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 01:29:08 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/30 01:05:19 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/12/06 01:47:06 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void	init_struct(t_env *e)
 	e->start_id = 0;
 	e->end_id = 0;
 	e->room = NULL;
+	e->count_ant = 1;
 }

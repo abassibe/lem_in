@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 00:16:52 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/30 02:46:11 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/12/01 02:17:33 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ static int		**set_paths(const int max_path, const int nb_room)
 
 	i = -1;
 	j = -1;
-	if (!(paths = (int **)ft_memalloc((sizeof(int *) * max_path) + 1)))
+	if (!(paths = (int **)ft_memalloc((sizeof(int *) * max_path))))
 		ft_error("ERROR", 1);
 	while (++i < max_path)
-		if (!(paths[i] = (int *)ft_memalloc((sizeof(int) * nb_room) + 1)))
+		if (!(paths[i] = (int *)ft_memalloc((sizeof(int) * nb_room))))
 			ft_error("ERROR", 1);
 	i = -1;
 	while (++i < max_path)
@@ -101,6 +101,7 @@ int				**get_path(t_env *e)
 	int		**paths;
 
 	i = -1;
+	free(e->path);
 	paths = set_paths(e->max_path, e->nb_room);
 	while (++i < e->max_path)
 	{

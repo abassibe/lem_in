@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 00:01:27 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/29 03:48:31 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/12/06 01:45:22 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ char	*get_name(int nb, t_room *room)
 	return (room->name);
 }
 
-void	print_move(t_env *e, int from, int to)
+void	print_move(t_env *e, int to, int ant)
 {
-	char	*name1;
-	char	*name2;
+	char	*dest;
 
-	name1 = get_name(from, e->room);
-	name2 = get_name(to, e->room);
-	ft_printf("L%s-%s ", name1, name2);
+	dest = get_name(to, e->room);
+	ft_printf("L%d-%s ", ant, dest);
 }

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 03:05:48 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/30 02:38:41 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/12/06 01:46:23 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	all_in_one(t_env *e)
 
 	i = -1;
 	while (++i < e->ants)
-		print_move(e, e->start_id, e->end_id);
+		print_move(e, e->end_id, i);
 	write(1, "\n", 1);
 }
 
@@ -65,7 +65,6 @@ void	algo(t_env *e)
 
 	i = -1;
 	ant_max = e->ants;
-	free(e->path);
 	if (!(e->bl = (int *)ft_memalloc((sizeof(int) * e->nb_room) + 1)))
 		ft_error("ERROR", 1);
 	while (++i < e->nb_room)
@@ -78,4 +77,8 @@ void	algo(t_env *e)
 		all_in_one(e);
 	else
 		send_ants(e, paths, ant_max);
+	i = -1;
+	while (++i < e->max_path)
+		free(paths[i]);
+	free(paths);
 }

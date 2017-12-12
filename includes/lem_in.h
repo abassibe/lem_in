@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 00:36:44 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/30 02:07:07 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/12/06 01:45:17 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_env
 	int				start_id;
 	int				end_id;
 	int				*bl;
+	int				count_ant;
 	t_room			*room;
 }					t_env;
 
@@ -68,7 +69,7 @@ void				init_struct(t_env *e);
 void				all_print(t_env *e);
 void				algo(t_env *e);
 int					**get_path(t_env *e);
-void				print_move(t_env *e, int from, int to);
+void				print_move(t_env *e, int to, int ant);
 void				send_ants(t_env *e, int **paths, int ant_max);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 05:19:51 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/30 04:14:04 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/12/01 01:20:43 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char		parsing(t_env *e)
 	{
 		e->ants = ft_atoi(e->str);
 		if (e->ants <= 0)
-			ft_error("Error", 0);
+			ft_error("ERROR", 0);
 		e->args = 1;
 	}
 	else if (c == 'e')
