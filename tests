@@ -1,8 +1,0 @@
-#!/bin/bash
-i="0"
-
-while [ $i -lt 40000000000 ]
-do
-	./lem-in < tst/in0 &
-	i=$[$i+1]
-done
