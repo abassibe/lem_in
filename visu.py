@@ -76,8 +76,31 @@ def draw_map():
     return room, j
 
 room, j = draw_map()
+
+def draw_pre_ant(lem, room, named, m):
+    tmp = lem[m].split(" ")
+    n = 0
+    o = 1
+    while n < len(tmp) - 1 and named not in tmp[n]:
+        n += 1
+    if named not in tmp[n]:
+        return
+    tmp2 = tmp[n].split("-")
+    while room[o][0] != tmp2[1]:
+        o += 1
+        f room[o][0] == tmp2[1]:
+            canvas.create_rectangle((int(room[o][1]) + COEF_X) * COEF,
+                    (int(room[o][2]) + COEF_Y) * COEF,
+                    ((int(room[o][1]) + COEF_X) * COEF) + COEN,
+                    ((int(room[o][2]) + COEF_Y) * COEF) + COEN, fill="purple")
+            canvas.update_idletasks()
+            time.sleep(1)
+            canvas.delete("all")
+            draw_map()
+
 def draw_ant(room, j):
     i = 1
+    test = False
     while j < len(lem):
         tmp = lem[j].split(" ")
         k = 0
@@ -86,6 +109,8 @@ def draw_ant(room, j):
             while len(name) > 1 and room[i][0] != name[1]:
                 i += 1
                 if room[i][0] == name[1]:
+                    if test == True:
+                        draw_pre_ant(lem, room, name[0], j - 1)
                     canvas.create_rectangle((int(room[i][1]) + COEF_X) * COEF,
                             (int(room[i][2]) + COEF_Y) * COEF,
                             ((int(room[i][1]) + COEF_X) * COEF) + COEN,
@@ -96,6 +121,7 @@ def draw_ant(room, j):
                     draw_map()
             i = 1
             k += 1
+        test = True
         j += 1
 
 def inpt(event):

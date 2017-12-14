@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 01:04:32 by abassibe          #+#    #+#             */
-/*   Updated: 2017/12/01 01:22:44 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/12/13 04:32:55 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ static void		existing_path(t_env *e, t_room *room)
 		room = room->next;
 	id_start = room->id;
 	e->start_id = id_start;
-	e->room = room;
-	while (room->features != 'e')
+	room = e->room;
+	while (room && room->features != 'e')
 		room = room->next;
 	id_end = room->id;
 	e->end_id = id_end;

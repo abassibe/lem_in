@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 03:33:26 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/30 01:03:45 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/12/13 04:54:21 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,7 @@ char			which_kind_of_line(t_env *e)
 	if (e->str[0] == 'L' || e->str[0] == '-' || e->str[0] == ' ')
 		return ('e');
 	if (e->str[0] == '#' && e->str[1] != '#')
-	{
 		return ('d');
-	}
 	if (is_particular_case(&e->start, &e->end, e->str))
 	{
 		if (e->start == 1 && e->end == 1)
