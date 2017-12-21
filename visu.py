@@ -35,8 +35,12 @@ COEF = 50
 COEF_X = 0
 COEF_Y = 0
 COEN = 30
+SAVE_X = 0
+SAVE_Y = 0
 
 def draw_map():
+    global SAVE_X
+    global SAVE_Y
     j = 0
     i = 1
     room = []
@@ -70,6 +74,9 @@ def draw_map():
             featurey1 = ceil(x2 + (COEN / 2))
             featurey2 = ceil(y2 + (COEN / 2))
             canvas.create_line(featurex1, featurex2, featurey1, featurey2, fill="brown")
+        if "##start" in lem[j - 1]:
+            SAVE_X = int(room[j][1])
+            SAVE_Y = int(room[j][2])
         i = 1
         j += 1
     j += 1
@@ -84,11 +91,19 @@ def draw_pre_ant(lem, room, named, m):
     while n < len(tmp) - 1 and named not in tmp[n]:
         n += 1
     if named not in tmp[n]:
+        canvas.create_rectangle((int(SAVE_X) + COEF_X) * COEF,
+                (int(SAVE_Y) + COEF_Y) * COEF,
+                ((int(SAVE_X) + COEF_X) * COEF) + COEN,
+                ((int(SAVE_Y) + COEF_Y) * COEF) + COEN, fill="purple")
+        canvas.update_idletasks()
+        time.sleep(1)
+        canvas.delete("all")
+        draw_map()
         return
     tmp2 = tmp[n].split("-")
     while room[o][0] != tmp2[1]:
         o += 1
-        f room[o][0] == tmp2[1]:
+        if room[o][0] == tmp2[1]:
             canvas.create_rectangle((int(room[o][1]) + COEF_X) * COEF,
                     (int(room[o][2]) + COEF_Y) * COEF,
                     ((int(room[o][1]) + COEF_X) * COEF) + COEN,
@@ -111,6 +126,15 @@ def draw_ant(room, j):
                 if room[i][0] == name[1]:
                     if test == True:
                         draw_pre_ant(lem, room, name[0], j - 1)
+                    else:
+                        canvas.create_rectangle((int(SAVE_X) + COEF_X) * COEF,
+                                (int(SAVE_Y) + COEF_Y) * COEF,
+                                ((int(SAVE_X) + COEF_X) * COEF) + COEN,
+                                ((int(SAVE_Y) + COEF_Y) * COEF) + COEN, fill="purple")
+                        canvas.update_idletasks()
+                        time.sleep(1)
+                        canvas.delete("all")
+                        draw_map()
                     canvas.create_rectangle((int(room[i][1]) + COEF_X) * COEF,
                             (int(room[i][2]) + COEF_Y) * COEF,
                             ((int(room[i][1]) + COEF_X) * COEF) + COEN,
